@@ -5,7 +5,7 @@ import { UpdateMovieDto } from './dto/update-movie.dto';
 
 @Injectable()
 export class MoviesService {
-  //1차 : fake DB
+  //실제 DB연결은 하지 않은 fake DB
   private movies: Movie[] = [];
 
   getAll(): Movie[] {
