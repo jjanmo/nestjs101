@@ -100,4 +100,36 @@ describe('MoviesService', () => {
       expect(service.getAll()).toContainEqual(movie);
     });
   });
+
+  describe('update', () => {
+    const updatedDate = {
+      title: 'Update Testing',
+      year: 2020,
+      genres: ['thrill'],
+    };
+
+    it('should update a movie', () => {
+      service.create({
+        title: 'Hello world',
+        year: 2021,
+        genres: ['action', 'drama'],
+      });
+
+      service.update(1, updatedDate);
+      const afterUpdated = service.getOne(1);
+      expect(afterUpdated).toEqual({ ...updatedDate, id: 1 });
+    });
+
+    it('could not update a movie and throw error', () => {
+      service.create({
+        title: 'Hello world',
+        year: 2021,
+        genres: ['action', 'drama'],
+      });
+
+      const updateMovie = () => service.update(10, updatedDate);
+
+      expect(updateMovie).toThrow();
+    });
+  });
 });
