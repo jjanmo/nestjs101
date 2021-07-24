@@ -68,12 +68,36 @@ describe('MoviesService', () => {
       expect(beforeDeleted).toBeGreaterThan(afterDeleted);
     });
 
-    it('could not delete a movie', () => {
-      try {
-        service.delete(100);
-      } catch (e) {
-        expect(e).toBeInstanceOf(NotFoundException);
-      }
+    it('could not delete a movie and throw error', () => {
+      const delelteMovie = () => service.delete(100);
+
+      expect(delelteMovie).toThrow();
+    });
+  });
+
+  describe('create', () => {
+    it('create one movie', () => {
+      const movie = {
+        title: 'Hello world',
+        year: 2021,
+        genres: ['action', 'drama'],
+      };
+      service.create(movie);
+
+      const movies = service.getAll();
+      expect(movies.length).toBe(1);
+    });
+
+    it('movies contain movie', () => {
+      const movie = {
+        id: 1,
+        title: 'Hello world',
+        year: 2021,
+        genres: ['action', 'drama'],
+      };
+      service.create(movie);
+
+      expect(service.getAll()).toContainEqual(movie);
     });
   });
 });
