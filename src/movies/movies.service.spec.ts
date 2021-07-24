@@ -11,6 +11,12 @@ describe('MoviesService', () => {
     }).compile();
 
     service = module.get<MoviesService>(MoviesService);
+
+    service.create({
+      title: 'Hello world',
+      year: 2021,
+      genres: ['action', 'drama'],
+    });
   });
 
   describe('getAll', () => {
@@ -22,23 +28,11 @@ describe('MoviesService', () => {
 
   describe('getOne', () => {
     it('should be return movie', () => {
-      service.create({
-        title: 'Hello world',
-        year: 2021,
-        genres: ['action', 'drama'],
-      });
-
       const movie = service.getOne(1);
       expect(movie).toBeDefined();
     });
 
     it('should be check movie property ', () => {
-      service.create({
-        title: 'Hello world',
-        year: 2021,
-        genres: ['action', 'drama'],
-      });
-
       const movie = service.getOne(1);
       expect(movie.genres).toBeInstanceOf(Array);
       expect(typeof movie.title).toBe('string');
@@ -56,12 +50,6 @@ describe('MoviesService', () => {
 
   describe('delete', () => {
     it('delete a movie', () => {
-      service.create({
-        title: 'Hello world',
-        year: 2021,
-        genres: ['action', 'drama'],
-      });
-
       const beforeDeleted = service.getAll().length;
       service.delete(1);
       const afterDeleted = service.getAll().length;
@@ -77,6 +65,7 @@ describe('MoviesService', () => {
 
   describe('create', () => {
     it('create one movie', () => {
+      const beforeCreated = service.getAll().length;
       const movie = {
         title: 'Hello world',
         year: 2021,
@@ -85,7 +74,7 @@ describe('MoviesService', () => {
       service.create(movie);
 
       const movies = service.getAll();
-      expect(movies.length).toBe(1);
+      expect(movies.length).toBe(beforeCreated + 1);
     });
 
     it('movies contain movie', () => {
@@ -95,7 +84,6 @@ describe('MoviesService', () => {
         year: 2021,
         genres: ['action', 'drama'],
       };
-      service.create(movie);
 
       expect(service.getAll()).toContainEqual(movie);
     });
@@ -109,24 +97,12 @@ describe('MoviesService', () => {
     };
 
     it('should update a movie', () => {
-      service.create({
-        title: 'Hello world',
-        year: 2021,
-        genres: ['action', 'drama'],
-      });
-
       service.update(1, updatedDate);
       const afterUpdated = service.getOne(1);
       expect(afterUpdated).toEqual({ ...updatedDate, id: 1 });
     });
 
     it('could not update a movie and throw error', () => {
-      service.create({
-        title: 'Hello world',
-        year: 2021,
-        genres: ['action', 'drama'],
-      });
-
       const updateMovie = () => service.update(10, updatedDate);
 
       expect(updateMovie).toThrow();
