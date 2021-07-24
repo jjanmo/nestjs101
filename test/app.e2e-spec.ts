@@ -69,10 +69,43 @@ describe('AppController (e2e)', () => {
     });
   });
   describe('/movies/:id', () => {
-    it.todo('GET 200');
-    it.todo('GET 404');
-    it.todo('PETCH 200');
-    it.todo('DELETE 200');
-    it.todo('DELETE 404');
+    it('GET 200', () => {
+      return request(app.getHttpServer()) //
+        .get('/movies/1')
+        .expect(200);
+    });
+    it('GET 404', () => {
+      return request(app.getHttpServer()) //
+        .get('/movies/900')
+        .expect(404);
+    });
+    it('PETCH 200', () => {
+      return request(app.getHttpServer()) //
+        .patch('/movies/1')
+        .send({ title: 'Hello World' })
+        .expect(200);
+    });
+    it('PETCH 400', () => {
+      return request(app.getHttpServer()) //
+        .patch('/movies/1')
+        .send({ title: 'Hello World', type: 'movie' })
+        .expect(400);
+    });
+    it('PETCH 404', () => {
+      return request(app.getHttpServer()) //
+        .patch('/movies/900')
+        .send({ title: 'Hello World' })
+        .expect(404);
+    });
+    it('DELETE 404', () => {
+      return request(app.getHttpServer()) //
+        .delete('/movies/200')
+        .expect(404);
+    });
+    it('DELETE 200', () => {
+      return request(app.getHttpServer()) //
+        .delete('/movies/1')
+        .expect(200);
+    });
   });
 });
