@@ -1,6 +1,8 @@
 # NestJS101
 
-> 🔥두둥🔥 드디어 그 좋다고 소문이 자자한 `NestJS`를 알아보고자 한다. Learning by Doing에 충실한 [Nomad Coders NestJS](https://nomadcoders.co/nestjs-fundamentals)를 통해서 만들어보고 해당 내용을 [공식문서](https://nestjs.com/)를 통해서 직접 찾아보면서 정리해보고자 한다.
+> 🔥두둥🔥 드디어 그 좋다고 소문이 자자한 `NestJS`를 알아보고자 한다. Learning by Doing에 충실한 [Nomad Coders NestJS](https://nomadcoders.co/nestjs-fundamentals)를 통해서 만들어보고 ~~해당 내용을 [공식문서](https://nestjs.com/)를 통해서 직접 찾아보면서 정리해보고자 한다.~~
+
+> This project is deprecated ⚡️
 
 NestJS에 대해서 간략하게 설명하면, 몇가지 단어로 압축할 수 있을 것 같다.
 
@@ -50,14 +52,3 @@ NestJS에 대해서 간략하게 설명하면, 몇가지 단어로 압축할 수
 
 > 각각의 파일에 대한 좀 더 자세한 설명은 해당 파일을 클릭하면 된다. 최초 코드를 바탕으로 설명한다.
 
-<br/>
-
-## REST API
-
-<br/>
-
-## Unit Testing
-
-<br/>
-
-## E2E Testing
